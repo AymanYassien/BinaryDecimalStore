@@ -11,6 +11,8 @@ License
 Overview
 Binary Decimal Store is an advanced e-commerce application built using the .NET MVC framework. It provides a robust and feature-rich platform for online shopping, with a focus on seamless user experience and powerful administrative capabilities.
 Features
+
+
 🔹Seamless Authentication and Authorization
 
 Integrated external login providers like Google and Microsoft
