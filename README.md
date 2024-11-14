@@ -36,6 +36,8 @@ Utilized .NET and C# for the backend
 Leveraged SQL databases, Repository pattern, and Unit of Work
 Incorporated Dependency Injection for modular code
 
+/ /  Can Find Similar this in .net Mastery Courses, but this is my own Version + my Signiture
+
 Technologies Used
 
 .NET Core
