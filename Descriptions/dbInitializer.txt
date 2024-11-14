@@ -1,0 +1,13 @@
+To: initialize database and Lunch Project for first time
+
+1- add its own Folder in Data access Layer 
+2- add  interface and class implement it
+3- the class contain at least one method call initialize
+4- initialize do 3 main things: 
+    a: add migrations
+    b: crete roles if not created
+    c: create admin if not created
+5- to do that we need inject UserManger, RoleManager, dbContext
+6- add Methods do that
+7- initialize will invoke in program.cs (in pipeLine)   after app.Run()
+8- add seedDate(), add scope data to scoped call it after app.Session // or after auth as you like

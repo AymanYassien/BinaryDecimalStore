@@ -1,0 +1,195 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - BinaryDecimalStore</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="~/BinaryDecimalStore.styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" style="border-radius: 50%">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css"/>
+</head>
+<body>
+<header>
+    
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="customer" asp-controller="Home" asp-action="Index"><img width="50 50" style="border-radius: 50%" src="~/Gemini_Generated_Image_kqhu1ckqhu1ckqhu.jpeg"/></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="customer" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+
+
+                    @if (User.IsInRole(StaticData.Role_Admin))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="Admin" asp-controller="OrderManag" asp-action="Index">
+                                Manage Orders
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Store Management
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="Categorey" asp-action="Index">Category</a>
+                                </li>
+
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="Product" asp-action="Index">Products</a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="Company" asp-action="companies">Companies</a>
+                                </li>
+
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/register">Create User</a>
+                                </li>
+                                
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="User" asp-action="index">Manage Users</a>
+                                </li>
+                                
+
+
+                            </ul>
+
+
+
+
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="customer" asp-controller="Cart" asp-action="Index">
+
+                                @if (HttpContextAccessor.HttpContext.Session.GetInt32(StaticData.SessionCART) != null)
+                                {
+                                    <i class="bi bi-cart"> &nbsp; (
+                                        @HttpContextAccessor.HttpContext.Session.GetInt32(StaticData.SessionCART)
+                                        ) </i>
+                                }
+                                else
+                                {
+                                    <i class="bi bi-cart"> &nbsp; (
+                                        0
+                                        ) </i>
+
+                                }
+
+                            </a>
+                        </li>
+                    }
+
+                    <li class="nav-item dropdown currency-list">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Currency
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a asp-controller="Home" asp-action="ChangeCurrency" asp-route-currency="Dollar" class="nav-link text-white" data-currency="USD">USD</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li class="nav-item">
+                                <a asp-controller="Home" asp-action="ChangeCurrency" asp-route-currency="KSA" class="nav-link text-white" data-currency="SAR">SAR</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li class="nav-item">
+                                <a asp-controller="Home" asp-action="ChangeCurrency" asp-route-currency="EGY" class="nav-link text-white" data-currency="EGP">EGP</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+                <partial name="_LoginPartial"/>
+
+            </div>
+        </div>
+    </nav>
+
+
+</header>
+<div class="container">
+    <main role="main" class="pb-3">
+        <partial name="_NotificationPartial"/>
+        @RenderBody()
+    </main>
+</div>
+
+<footer  class="border-top  footer bg-primary text-white-50 ">
+    <div class="text-center">
+        &copy; 2024 - Binary Decimal Store - Made without any feelings by &nbsp; 
+        <a target="_blank" href="https://linkedin.com/in/aymanyassien" >BnYasin</a>
+    </div>
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js" asp-append-version="true"></script>
+<script src="https://cdn.tiny.cloud/1/763tf7bf50eu20v1w1734nz6dmhmjn4y5m6o44noelbdhpxt/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+<script>
+    
+  document.addEventListener('DOMContentLoaded', function() {
+      // Handle currency selection
+      const currencyLinks = document.querySelectorAll('[data-currency]');
+      
+      // Check if we're on a page with currency already changed (check URL parameters)
+      const urlParams = new URLSearchParams(window.location.search);
+      const currencyChanged = urlParams.get('currencyChanged');
+      
+      // Check localStorage and trigger currency change only if not already changed
+      const savedCurrency = localStorage.getItem('selectedCurrency');
+      if (savedCurrency && !currencyChanged) {
+          const currencyMap = {
+              'USD': 'Dollar',
+              'SAR': 'KSA',
+              'EGP': 'EGY'
+          };
+          const routeCurrency = currencyMap[savedCurrency];
+          if (routeCurrency) {
+              //window.location.href = `/customer/Home/ChangeCurrency?currency=${routeCurrency}`;
+          }
+      }
+      
+      // Save selection when user clicks a currency
+      currencyLinks.forEach(link => {
+          link.addEventListener('click', function() {
+              const currency = this.getAttribute('data-currency');
+              localStorage.setItem('selectedCurrency', currency);
+          });
+      });
+  });
+        
+  
+</script>

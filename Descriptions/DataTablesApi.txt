@@ -1,0 +1,23 @@
+1- add Datatable cdd and JS cdn to suitable place in Layout page (datatable.net)
+
+2- in Controller, add Region For API, and write a methode that return all in Json format
+
+3- in wwwRoot add JS file, that contain ajax code to call api into Doc.Ready Fum + write Api ur path
+
+4- after retrieve data, get from Data Tab in site To Format Table (in ControllerName.js)
+
+5- add id To Table and delete Section Body, specifyy Columns in js file
+
+6- add Section Js in Page Display table
+
+# Common Error: if name in js does not match Col Name from Json file + Case Sen => warning
+# Ensure Path __________________Pleaaaaaaaaaaaaaaaaaaaaaaaase
+# Number of Columns must match in header and body
+
+7- Custom Edit / Delete 
+
+8- Add Sweet alert
+
+    - add js , css
+    - 
+ 

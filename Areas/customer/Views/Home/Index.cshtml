@@ -1,0 +1,52 @@
+﻿@model List<Product>
+
+
+
+<div class="row pb-3">
+    @foreach (var product in Model)
+    {
+        double Price = (product.price - (product.price * product.discountRatio / 100));
+        string newPrice = StaticData.getPriceWithCurrency(Price);
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 mb-5 shadow border-top border-5 rounded"> 
+                        @if (product.productImages != null && product.productImages.Count > 0)
+                        {
+                            <img src="@product.productImages.FirstOrDefault().omageUrl" class="card-img-top rounded" alt="Product Image"/>
+                        }
+                        else
+                        {
+                            <img src="https://placehold.co/500x600/png" class="card-img-top rounded" alt="Product Image"/>   
+                        }
+                        
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@product.Name</p>
+                                @* <p class="card-title text-warning text-center">@product.Description</p> *@
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark text-opacity-75 text-center mb-0">
+                                    <span class="text-decoration-line-through">@StaticData.getPriceWithCurrency(product.price)</span>
+                                </p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark text-opacity-75 text-center">
+                                    <span>@newPrice</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <a asp-action="Details" asp-route-id="@product.ID" class="btn btn-primary bg-gradient border-0 form-control">Details</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    }
+        
+</div>
+

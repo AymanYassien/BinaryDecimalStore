@@ -1,0 +1,81 @@
+@model Company
+
+<title>Delete Company</title>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Delete Category</h2>
+            </div>
+        </div>
+    </div>
+    
+<div class="card-body p-4">
+    <form method="post">
+        @* <input asp-for="ID" hidden/> *@
+        <div class="border p-3 ">
+            @* <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+            
+            <div class="form-floating py-2 col-12">
+                <input asp-for="Name"  disabled class="form-control border-0 shadow"/>
+                <label asp-for="Name" class="ms-2"></label>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-floating py-2 col-12">
+                <input asp-for="@Model.State" disabled class="form-control border-0 shadow"/>
+                <label asp-for="@Model.State" class="ms-2"></label>
+                <span asp-validation-for="@Model.State" class="text-danger"></span>
+            </div>
+            <div class="form-floating py-2 col-12">
+                <input asp-for="@Model.City" disabled class="form-control border-0 shadow"/>
+                <label asp-for="@Model.City" class="ms-2"></label>
+                <span asp-validation-for="@Model.City" class="text-danger"></span>
+            </div>
+            <div class="form-floating py-2 col-12">
+                <input asp-for="@Model.Address" disabled  class="form-control border-0 shadow"/>
+                <label asp-for="@Model.Address" class="ms-2"></label>
+                <span asp-validation-for="@Model.Address" class="text-danger"></span>
+            </div>
+            <div class="form-floating py-2 col-12">
+                <input asp-for="@Model.Code" disabled  class="form-control border-0 shadow"/>
+                <label asp-for="@Model.Code" class="ms-2"></label>
+                <span asp-validation-for="@Model.Code" class="text-danger"></span>
+            </div>
+            <div class="form-floating py-2 col-12">
+                <input asp-for="@Model.PhoneNumber" disabled class="form-control border-0 shadow"/>
+                <label asp-for="@Model.PhoneNumber" class="ms-2"></label>
+                <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating py-2 col-12">
+                <input asp-for="Imageurl" disabled class="form-control border-0 shadow"/>
+                <label asp-for="Imageurl" class="ms-2"></label>
+                <span asp-validation-for="Imageurl" class="text-danger"></span>
+            </div>
+            
+            
+            <div class="row pt-2">
+                <div class="col-6 ">
+                    <button type="submit" class="btn btn-danger form-control" style="width: 150px">
+                        <i class="bi bi-trash-fill "></i> Delete
+                    </button>
+                </div>
+                <div class="col-6 ">
+                    <a asp-action="companies" asp-controller="Company" class="btn btn-outline-primary form-control border">Back to List</a>
+                </div>
+            </div>
+            
+        </div>
+    
+    
+    </form>
+</div>
+</div>
+
+
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+}

@@ -1,0 +1,52 @@
+to work with Repository Pattern
+
+- Benefits: add Generic Layer that connect with database, all connect with it to speak 
+  with data base
+  
+1- we create an interface generic + has a main CRUD methods (else update)
+2- create a generic class implement this interface
+
+for each model :
+3-    create an interface that inherit IRepo + update - save methods;
+4-    create a class implement iModel * consider inherit Repo class + iModel
+
+5- use ModelRepository class in your controller
+
+#   Common Error: when run will face "Unable to resolve service for type .. ",
+        mean you need to register this service       Line 19
+
+
+---------------N Tier---------------
+- separate Data access in single Directory
+- separate Models      in single Directory
+- separate Utilities in single Directory (static data)
+
+-----------------Unit of work ----------------------------
+- after add Repo Layer, we still inject DbContext in controller,
+        so we add unit Of Work Layer, that have an instance from each repo,
+        and inject dbContext in its ctor, 
+        and Each controller call this.
+        
+    +  we reimplement most common methods in it, Like: save() .
+    
+    
+--------------------- Areas --------------------------
+- Organize Functionality into a group.
+- add through add ScaffoldingItem -> add Area -> put all areas  under this umbrella
+
+- add attribute Area on top of controller to know where he below
+- in our case in each area we need only controller and view and delete another folders
+- in _Layout add 'asp-area'
+- move _viewImportsTo, _viewStart to Views folder .  
+
+
+1- Repository Pattern
+2- Unit of Work
+
+3- Dependency Injection
+4- SOLID
+
+5- Clean architecture
+6- Pipe Lines
+
+7- Areas

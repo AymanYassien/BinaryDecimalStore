@@ -1,0 +1,107 @@
+@model ManageRoleVM
+
+<title>Manage Role</title>
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Manage User Role</h2>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card-body p-4 mb-3">
+            <form method="post" class="row" enctype="multipart/form-data">
+                <input type="hidden" asp-for="@Model.extendUser.Id"  /> 
+                
+                <div class="row">
+                    <div class="col-10">
+                         <div class="border p-3 ">
+                                        
+                                        @* <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+                                        
+                                        <div class="form-floating py-2 col-12">
+                                            <input readonly asp-for="@Model.extendUser.name" class="form-control border-0 shadow"/>
+                                            <label asp-for="@Model.extendUser.name" class="ms-2"></label>
+                                        </div>
+                                        
+                                        <div class="form-floating py-2 col-12">
+                                            <select  asp-items="@Model.Roles" asp-for="extendUser.Role" class="form-select border-0 shadow">
+                                                @* <option selected >@Model.extendUser.Role</option>  *@
+                                            </select>
+                                           
+                                        </div>
+                                        
+                                        
+                                        @{
+                                            var companiesVisible = "display: none ";
+                                        }@if (Model.extendUser.Role == StaticData.Role_Company)
+                                         {
+                                             companiesVisible = "display: block";
+                                         }
+                                        
+                                        
+                                        <div class="form-floating py-2 col-12">
+                                            <select asp-items="@Model.Companies" style="  @companiesVisible" asp-for="extendUser.CompanyID" class="form-select border-0 shadow">
+                                                 <option selected disabled >-- Select Role --</option>
+                                            </select>
+                                            
+                                        </div>
+                                        
+                                        
+                                        <div class="row pt-2">
+                                            <div class="col-6 ">
+                                                    <button type="submit" class="btn btn-primary form-control" style="width: 150px">Update</button>
+                                            </div>
+                                
+                                            <div class="col-6 ">
+                                                <a asp-action="Index" asp-controller="User" class="btn btn-outline-primary form-control border">Back to List</a>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                    </div>
+                    
+                </div>
+            
+            </form>
+        </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+    <script>
+            $(document).ready (function(){
+               $(' #extendUser_Role').change(function(){
+                  var selection = $('#extendUser_Role Option:Selected').text();
+                  
+               if(selection== 'Company' ){
+                    $('#extendUser_CompanyID').show();
+               }
+                 else {
+                $('#extendUser_CompanyID').hide();
+                $('#extendUser_CompanyID').val('');
+               } 
+            })
+        })
+            
+        </script>
+}
+    
+

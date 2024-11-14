@@ -1,0 +1,145 @@
+- appSetting: file contain any secret data about your program (CS, Azure account ... etc)
+
+- www Root : any static data 
+
+- launch setting : program settings (if development Do ... , Production Do ... etc)
+
+- program file : (in pass was 2 files, this contain builder to add services, and add pipelines to handle request process)
+
+in general we can call : first step is know about project structure according your Technology.
+----------------------------------------
+1- add your Model, check data annotations
+2- set CS
+3- add 3 packages, EFCore, EF.SQL, Ef.Tools(migrations ..)
+4- DbContext + its builder in program.cs + Nuget
+
+5- update / add migrations:
+
+ - you create models with columns and its dataAnnotation,
+then in DbContext add DAtaSet<Model> TableName (DSet is actually response for creating table),,
+ 
+- then add migration which will add file in folder migration with 2 Methods up / down (create / drop ),
+- then when update DB that update on last migration, what if no migrations? 
+ this - i think - according your IDE, may allow and create db with single table (migrations) with empty rows,
+  or Reject like (Rider)  .
+  
+6- add controller, view
+7- seed (fill) category table 
+8- inject db obj to controller constructor, perform operations as you need as you need
+9- pass data from controller to model 
+
+10- perform CRUD 
+* Tag helper & Data annotation
+* server side validation (in models, in actions, in view)
+* custom validation (remote, add in ModelState)
+* Required Data annotation not trigger on numerical values,
+ cause its by default has a def value 0, else if it nullable !
+ * Temp data is for next req, then null
+ * Tostar Here : https://codeseven.github.io/toastr/ ,,,  add to layout,
+  and render be4 all, and build partial one, fill data after saveChanges()
+
+11-  apply RP, UoW
+12-  Build Product Controller / Views
+13-  Add Foreign Keys
+
+- Navigation Property is a reference to another table,
+    Represent Relation between 2 Entities (classes), 
+      (many - to - one), (one - to - many) => (Collection of Nav Prop) 
+      start Relation from class has ref,
+
+- Lazy Loading: 'Include' => by def: Nav Prop not included when you query
+- there are 2 main errors always happen: N + 1 Problem,
+ Circular ref in serialization (special from obj to json),
+ 
+ N + 1 :: 1 represent initial Query to fetch the parent entities
+       :: N represent the number of child entities 
+       Ex: we execute 1 query to fetch all auth, N to fetch their posts
+       
+       this can significantly impact performance.
+       
+  Sol: 
+        1-Eager Loading: use Include() to load related entities in a single query.
+        2-Projection (Select only data you need)
+        
+        but may face a Problem here:
+        
+   Circular Reference: may when you Serialize Data: 
+                 Ex: when serialize author, it tries to serialize the Book Collections, 
+                     for each book it tries serialize author (infinite loop)
+                     
+   Sol: DTOs (VM), [JsonIgnore] / or in DBContext    
+   
+   ## Ensure Nav Prop Nullable until add your VM    
+   
+14- add Image url 
+15- SelectList : 2 ways to pass Category 
+        1- a) Projection (select) and pass in View Bag 
+        in SelectListItem
+        - after fill it and assign it to key in V.Bag
+        - it by def if use asp-select"select List Name" 
+                  => save id of selected List item,    Display name to show 
+                   
+        1- b)   passing to View Data, and in view cast it to IEnum...<selectListItem> then pass
+        
+        2- View Model :: common RunTime: avoid by: [validateNever] (on VM, original M)
+        
+16- edit upload file + form encType="multi"   + set 'name' for image = name pass in action Method 
+17- Combine Add / update
+18- Rich Text box (copy script contain your Api Key, Copy actual script )   
+19- Add Image
+
+    - add an Image Folder in WWWRoot + Folder For each Product
+    
+    - Pass an IFormFile? in Upsert Method
+    - Inject in controller webHostEnvironment
+    - Set a Private Function that take an image and return a full new Path
+    - save url in Obj
+    ----------------------
+    - Manage Display in image
+    - Manage Update in upSert
+    - insure add an image as a hidden field
+
+20- a Nice Way to generalize how pass a Parameters to Include in Repository Pattern
+21- DataTable API 3d Party
+22- Add Identity 
+23- addCompany
+24 -add ShoppingCart
+25- add OrderConfirmation (Models, VM, Repo, Unit, View, SD, ) // nice logic
+    - we add each product will ordering in a single record in database
+    - [bindProperty] => Ex: we was send an obj to view (get), then view update it,
+        bind changes to use this obj in action Post 
+    - Critical here: Do not try populate navigation Property, its will try add it as a new when SaveChanges,
+        Ex: in OrderHeader U have an AppUser NavProp, do not do "_unit...OrderH...AppU.. = _unit...Get(u => u ....) "
+        this will try add when you add OrderHeader ==> Exception
+        
+    - Stripe Payment (in app setting add publish and private key,
+     add in utility File has props match Keys in json file,
+      and add to builder which will inject values from json to props)
+    - this will add a section and if it true => go on 
+    - add methods to update order / payment process
+26- order Management
+      - add Controller
+      - add View Model 
+      
+27- add session in shopping cart
+28- google authentication
+29- dbInitializer
+30 -email
+31- deploy
+      
+
+
+
+
+------------------------------------
+Notes about IDE: 
+
+# Hot reload: if any update in html, css, js => can hot reload (refresh with no building),
+But if modify in controller must Rebuild   
+
+# critical error when try open 2 razor practices into 2 Razors was opened 
+
+
+
+Problems: 
+1- update Constraint in category

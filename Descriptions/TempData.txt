@@ -1,0 +1,27 @@
+    
+                                                 View Bag / View Data
+                                                        
+_____________________Common___________________________                 View Bag                     View Data 
+- Temp Data                                           ||                                  |
+- From Controller to view ONLY                        ||- Dynamic                         |  - strong Data type 
+- any no of values (key pair)                         ||  (not detect prop name           |    (derived from dic Class), 
+- wrapper around View Data                            ||   when use it)                   |    must convert it be4 use
+- for current http Req (any redirect = null data)     ||                                  |
+- Ideal 4:  Temp data  is not in model                ||                                  |
+_______________________________________________________________________________________________________________ 
+## View Bag internally inserts data into ViewData Dictionary,
+   So the key of ViewData and property of viewBag must not matches.
+   - Second override first
+   
+   - can access view Bag by key or prop
+_________________________________________________________________________ 
+                                    
+                                    
+                             Temp Data
+                              
+- Both Direction
+- Internally Use Session to store data
+- only one time message
+_______________________________________________
+   
+   

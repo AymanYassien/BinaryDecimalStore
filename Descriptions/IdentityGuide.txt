@@ -1,0 +1,79 @@
+About: 
+
+You will Scaffolding Identity, that will add many files to your project,
+ here some details will illustrate some things
+ 
+# Identity need to add your DBContext Class, but you can not do Before Config Your
+   own DBClass to inherit from 'IdentityDbContext'   
+   
+   +
+   
+   edit 'OnModelCreating' through      adding moduleBuilder to Base one . . . 
+
+_____________________________________
+1- what Added?
+
+in Program file: we add  'Services' that add default value of DbContext
+        +             app.UseAuthentication Be4 auth();
+        
+- add folder in Areas contain all you added, 
+# here pages is a Razor Pages not MVC
+___________________________________________
+2- Add Register, Login to your Nav Bar: 
+
+- add partial login View to your Layout
+- in Login Layout, delete text-dark "modify view only"
+- in Program: add 'MapRazorPages' after authorization()  
+  + add 'addRazorPages' after AddDefaultIdentity
+___________________________________________
+3- Add Identity Tables:
+- addMigration now by default add it to dataBase (add 7 tables)
+___________________________________________
+4- Extend Identity User:
+- add Class user that inherit userClass, and add ur own properties
+- edit program file, and add new class to dbContext, add migration 
+
+# also add Discriminator USER field, that till if user from applicationUser, or IdentityUser (base or child class) 
+___________________________________________
+5- Register a user, an applicationUser (ExtendUser)
+
+-def as a userIdentity
+-as an Extend: 
+    - change type of CreateUser Method to extendUser Class
+___________________________________________
+6- Create Roles in Database:
+
+    1- in Program.cs: change 'AddDefaultIdentity' by 'AddIdentity' (IdentityRole 2nd par)
+    2- add your roles in file 'staticData' you created in Utility Project
+    3- inject ClassHelper call it "RoleManager" type of <IdentityRole>                           **
+    4- in Register Page, in 'OnGetAsync', check when user tryRegister if any
+          Role not exist mean no one added, so add all.  
+          
+          # getAwaiter().getResult() => `await` Keyword
+          # CreateAsync => not need addSaveChanges, add all automatically
+         
+          # this is will create when you hit Register button
+      # Common Error: Not Implement EmailSender, so implement it and add in Pipe Lines
+___________________________________________
+6- Assign Roles on registration: 
+
+   1- in Register Page: add -Role string prop, selectItemList => RoleList [NeverValidate] -
+   2- in OnGetAsync   : Input = new {RoleList = _Role......}
+   3- in UI           : add SelectList in Div
+           # `asp-for="Input.Role" asp-items="@Model.Input.RoleList"` asp-for => automatically check Model,
+            else must write 
+   4- assign role in OnPostMethod in if result.Success => add if else cond to assign role  to data will saving
+       # Error here: by Def: when hit submit it generate Token, => must add this in pipe Lines        
+  
+___________________________________________
+7- Add Authorization: 
+
+   1- in all view imports, add: `using static data`,  
+   2- for Ex: you want Display X element for admins only, if user isAdmin => show ... 
+   3- add `[Authorize(Roles = StaticData.Role_Admin)]`, on top of method or class, to prevent C/P url and access .
+   4- route access Denied page in program after use authorization statement
+___________________________________________
+8- Edit UI:
+ - Edit Reg, Login UI and ensure pass data in new field to `user` obj in `onPostMethod`
+ - Edit Personal Profile
+______________________________________________________________________

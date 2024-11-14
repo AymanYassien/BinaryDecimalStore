@@ -1,0 +1,39 @@
+how add Social Login to your .Net Project
+
+
+1- open 'Console.cloud.google.com'
+2- create new Project, then select it
+3- from side Menu => (burger menu) choose api and services
+4- choose OAuth Consent Screen
+5- user type => External   then hit create button
+6- fill project name, email and support email
+7- can leaf next steps empty until back to Dashboard screen
+8- Click on  credentials, Create credentials, choose OAuth, select web app type,
+9- add any name, url
+10- save your client id, secret id
+11- can add in secret file, app settings   => we use first one 
+12-   to do that Ensure you have a  UserSecretsId property  in your Project, 
+      if not exist, open terminal in your project, and Run  =>
+        "dotnet user-secrets init --project <Your Project name>"
+        
+13- now you can add your secret in this Format :
+"dotnet user-secrets init --project BinaryDecimalStore.csproj"
+add clientId and secret in 2 Commands:
+
+    a: ` dotnet user-secrets set "Authentication:Google:Client" "<your secret id>"`
+    b: `  dotnet user-secrets set "Authentication:Google:ClientSecret" ""` 
+
+14- in Program.cs before builder.Build()
+add: 
+  
+   builder.Services.AddAuthentication().AddGoogle(optins =>
+          {
+              optins.ClientId = builder.Configuration["Authentication:Google:Client"]; 
+              // like in your secret file
+              optins.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+          });
+
+
+* Ensure you was download authentication.google Nuget Package
+
+15- 

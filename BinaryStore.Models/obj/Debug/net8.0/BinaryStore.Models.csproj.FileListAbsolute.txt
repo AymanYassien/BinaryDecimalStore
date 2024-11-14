@@ -1,0 +1,14 @@
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/bin/Debug/net8.0/BinaryStore.Models.deps.json
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/bin/Debug/net8.0/BinaryStore.Models.dll
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/bin/Debug/net8.0/BinaryStore.Models.pdb
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/obj/Debug/net8.0/BinaryStore.Models.GeneratedMSBuildEditorConfig.editorconfig
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/obj/Debug/net8.0/BinaryStore.Models.AssemblyInfoInputs.cache
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/obj/Debug/net8.0/BinaryStore.Models.AssemblyInfo.cs
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/obj/Debug/net8.0/BinaryStore.Models.csproj.CoreCompileInputs.cache
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/obj/Debug/net8.0/BinaryStore.Models.dll
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/obj/Debug/net8.0/refint/BinaryStore.Models.dll
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/obj/Debug/net8.0/BinaryStore.Models.pdb
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/obj/Debug/net8.0/ref/BinaryStore.Models.dll
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/bin/Debug/net8.0/BinaryStore.Models.runtimeconfig.json
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/obj/Debug/net8.0/BinaryStore.Models.csproj.AssemblyReference.cache
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/BinaryStore.Models/obj/Debug/net8.0/BinaryStore.Models.genruntimeconfig.cache

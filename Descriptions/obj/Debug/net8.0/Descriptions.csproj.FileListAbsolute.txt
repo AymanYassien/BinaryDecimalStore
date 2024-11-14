@@ -1,0 +1,11 @@
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/Descriptions/bin/Debug/net8.0/Descriptions.deps.json
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/Descriptions/bin/Debug/net8.0/Descriptions.dll
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/Descriptions/bin/Debug/net8.0/Descriptions.pdb
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/Descriptions/obj/Debug/net8.0/Descriptions.GeneratedMSBuildEditorConfig.editorconfig
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/Descriptions/obj/Debug/net8.0/Descriptions.AssemblyInfoInputs.cache
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/Descriptions/obj/Debug/net8.0/Descriptions.AssemblyInfo.cs
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/Descriptions/obj/Debug/net8.0/Descriptions.csproj.CoreCompileInputs.cache
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/Descriptions/obj/Debug/net8.0/Descriptions.dll
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/Descriptions/obj/Debug/net8.0/refint/Descriptions.dll
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/Descriptions/obj/Debug/net8.0/Descriptions.pdb
+/Users/aymanyassien/RiderProjects/BinaryDecimalStore/Descriptions/obj/Debug/net8.0/ref/Descriptions.dll

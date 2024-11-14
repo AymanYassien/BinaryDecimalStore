@@ -1,0 +1,135 @@
+@model ProductViewModel
+
+@{
+    // IEnumerable<SelectListItem> CategoryData = ViewData["CategoryListData"] as IEnumerable<SelectListItem>;
+    
+}
+
+
+<title>@(Model.Product.ID == 0? "Create" : "Update") Product</title>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">@(Model.Product.ID == 0? "Create" : "Update") Product</h2>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card-body p-4 mb-3">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Product.ID"  /> 
+          
+            <div class="row">
+                <div class="col-10">
+                     <div class="border p-3 ">
+                                    
+                                    @* <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+                                    
+                                    <div class="form-floating py-2 col-12">
+                                        <input asp-for="Product.Name" class="form-control border-0 shadow"/>
+                                        <label asp-for="Product.Name" class="ms-2"></label>
+                                        <span asp-validation-for="Product.Name" class="text-danger"></span>
+                                    </div>
+                                    <div class="py-2 col-12">
+                                        <label asp-for="Product.Description" class="ms-2 text-muted"></label>
+                                        <textarea asp-for="Product.Description" class="form-control border-0 shadow"></textarea>
+                                        @* <span asp-validation-for="Product.Description" class="text-danger"></span> *@
+                                    </div>
+                                    <div class="form-floating py-2 col-12">
+                                        <select asp-items="@Model.CategoryList" asp-for="Product.CategoryID" class="form-select border-0 shadow">
+                                            <option selected disabled>--Select Product Category--</option>
+                                        </select>
+                                        <label asp-for="Product.CategoryID" class="ms-2"></label>
+                                        <span asp-validation-for="Product.CategoryID" class="text-danger"></span>
+                                    </div>
+                                    
+                                    <div class="form-floating py-2 col-12">
+                                        <input asp-for="Product.price" class="form-control border-0 shadow"/>
+                                        <label asp-for="Product.price" class="ms-2"></label>
+                                        <span asp-validation-for="Product.price" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-floating py-2 col-12">
+                                        <input asp-for="Product.discountRatio" class="form-control border-0 shadow"/>
+                                        <label asp-for="Product.discountRatio" class="ms-2"></label>
+                                        <span asp-validation-for="Product.discountRatio" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-floating py-2 col-12">
+                                        <input  type="file" name="files" class="form-control border-0 shadow" multiple/>
+                                        <label asp-for="Product.productImages" class="ms-2"></label>
+                                        
+                                    </div>
+                                    <div class="row pt-2">
+                                        
+                                        <div class="col-6 ">
+                                            @if (Model.Product.ID == 0)
+                                            {
+                                                <button type="submit" class="btn btn-primary form-control" style="width: 150px">Save</button>
+                                            }
+                                            else
+                                            {
+                                                <button type="submit" class="btn btn-primary form-control" style="width: 150px">Update</button>
+                                            }
+                                            
+                                        </div>
+                            
+                                        <div class="col-6 ">
+                                            <a asp-action="Index" asp-controller="Product" class="btn btn-outline-primary form-control border">Back to List</a>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                </div>
+                <div class="col-2">
+                    @if (Model.Product.productImages != null)
+                    {
+                        foreach (var image in Model.Product.productImages)
+                        {
+                            <div class="border p-1 m-2 text-center">
+                                <img src="@image.omageUrl" width="100%" alt="Product Image"
+                                     style="border-radius: 5px; border: 1px solid #bbb9b9"/>
+                                <a asp-action="DeleteImage" class="btn btn-danger" asp-route-imageId="@image.id">Delete &nbsp;
+                                    <i class="bi bi-trash-fill"></i></a>
+                            </div>
+                        }
+                    }
+                   
+                </div>
+            </div>
+        
+        </form>
+    </div>
+    
+</div>
+
+
+
+@section Scripts{
+    <script>
+      tinymce.init({
+        selector: 'textarea',
+        plugins: [
+          // Core editing features
+          'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'lists', 'table', 'visualblocks', 'wordcount',
+          // Your account includes a free trial of TinyMCE premium features
+          // Try the most popular premium features until Oct 30, 2024:
+          'checklist', 'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown',
+        ],
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons  | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+          { value: 'First.Name', title: 'First Name' },
+          { value: 'Email', title: 'Email' },
+        ],
+        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+      });
+    </script>
+    {
+
+    <partial name="_ValidationScriptsPartial"/>
+    <partial name="_NotificationPartial"/>
+    }
+}

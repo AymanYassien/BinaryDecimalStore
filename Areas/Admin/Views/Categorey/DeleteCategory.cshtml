@@ -1,0 +1,59 @@
+@model Categorey
+
+<title>Delete Categorey</title>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Delete Category</h2>
+            </div>
+        </div>
+    </div>
+    
+<div class="card-body p-4">
+    <form method="post">
+        @* <input asp-for="ID" hidden/> *@
+        <div class="border p-3 ">
+            @* <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+            
+            <div class="form-floating py-2 col-12">
+                <input asp-for="name"  disabled class="form-control border-0 shadow"/>
+                <label asp-for="name" class="ms-2"></label>
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-floating py-2 col-12">
+                <input asp-for="Description" disabled class="form-control border-0 shadow"/>
+                <label asp-for="Description" class="ms-2"></label>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-floating py-2 col-12">
+                <input asp-for="DisplayOrder" disabled class="form-control border-0 shadow"/>
+                <label asp-for="DisplayOrder" class="ms-2"></label>
+                <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+            </div>
+            
+            <div class="row pt-2">
+                <div class="col-6 ">
+                    <button type="submit" class="btn btn-danger form-control" style="width: 150px">
+                        <i class="bi bi-trash-fill "></i> Delete
+                    </button>
+                </div>
+                <div class="col-6 ">
+                    <a asp-action="Index" asp-controller="Categorey" class="btn btn-outline-primary form-control border">Back to List</a>
+                </div>
+            </div>
+            
+        </div>
+    
+    
+    </form>
+</div>
+</div>
+
+
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+}

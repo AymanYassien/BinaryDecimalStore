@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+      <UserSecretsId>e5f8b345-33be-4ceb-8db6-867fc41111e7</UserSecretsId>
+  </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BouncyCastle.Cryptography" Version="2.4.0" />
+      <PackageReference Include="itext7" Version="8.0.5" />
+      <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.5" />
+      <PackageReference Include="MailKit" Version="4.8.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.10" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="8.0.10" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.OAuth" Version="2.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.6" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.6">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
+      <PackageReference Include="Stripe.net" Version="46.2.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="BinaryStore.DataAccess\BinaryStore.DataAccess.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+      <Folder Include="wwwroot\images\ProductsImages\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Categorey\addNewCategory.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Categorey\DeleteCategory.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Categorey\EditCategory.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Categorey\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\customer\Views\Categorey\addNewCategory.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\customer\Views\Categorey\DeleteCategory.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\customer\Views\Categorey\EditCategory.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\customer\Views\Categorey\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Categorey\addNewCategory.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Categorey\DeleteCategory.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Categorey\EditCategory.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Categorey\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\customer\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\customer\Home\Privacy.cshtml" />
+      <_ContentIncludedByDefault Remove="BinaryStore.Utilities\bin\Debug\net8.0\BinaryStore.Utilities.deps.json" />
+      <_ContentIncludedByDefault Remove="BinaryStore.Utilities\obj\BinaryStore.Utilities.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="BinaryStore.Utilities\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="BinaryStore.Utilities\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="Areas\Company\Views\Categorey\addNewCategory.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Company\Views\Categorey\DeleteCategory.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Company\Views\Categorey\EditCategory.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Company\Views\Categorey\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Company\Views\_ViewImports.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Company\Views\_ViewStart.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Areas\Admin\Views\Categorey\addNewCategory.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Categorey\DeleteCategory.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Categorey\EditCategory.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Categorey\Index.cshtml" />
+      <AdditionalFiles Include="Areas\customer\Views\Home\Index.cshtml" />
+      <AdditionalFiles Include="Areas\customer\Views\Home\Privacy.cshtml" />
+    </ItemGroup>
+
+</Project>

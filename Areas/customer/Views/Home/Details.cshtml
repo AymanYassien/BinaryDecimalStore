@@ -1,0 +1,329 @@
+@using Microsoft.CodeAnalysis.Scripting
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model ShoppingCart
+
+@{
+    double Price = (Model.Product.price - (Model.Product.price * Model.Product.discountRatio / 100));
+    string newPrice = StaticData.getPriceWithCurrency(Price);
+    string id = Model.AppUserId;
+}
+
+
+<form method="post">
+    <input asp-for="ProductId" hidden/>
+    <div class="card shadow border-0 mt-4 mb-4">
+        <div class="card-header bg-secondary bg-gradient text-light py-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3 class="text-white text-uppercase">@Model.Product.Name</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="py-3">
+                <div class="row">
+                    <div class="col-6 col-md-2 offset-lg-1 pb-1">
+                        <a asp-action="Index" class="btn btn-outline-primary bg-gradient mb-5 fw-semibold btn-sm text-uppercase">
+                            <small>Back to home</small>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-3 offset-lg-1 text-center mb-3">
+                            
+                        @if (Model.Product.productImages != null && Model.Product.productImages.Count > 0)
+                        {
+                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    @foreach (var imgWithIndex in Model.Product.productImages.Select ((img, index) => new { ProductImage = img, Index = index }))
+                                    {
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@imgWithIndex.Index" class="@(imgWithIndex.Index == 0? "active":"")" aria-current="true" aria-label="@($"Slide {imgWithIndex.Index + 1}")"></button>
+                                        
+                                    }
+                                    
+                                </div>
+                                <div class="carousel-inner">
+                                    
+                                    @foreach (var imgWithIndex in Model.Product.productImages.Select ((img, index) => new { ProductImage = img, Index = index }))
+                                    {
+                                        <div class="carousel-item @(imgWithIndex.Index == 0? "active":"")">
+                                            <img src="@imgWithIndex.ProductImage.omageUrl" class="d-block w-100" alt="...">
+                                        </div>
+                                    }
+
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                           
+                        }
+                        else
+                        {
+                            <img src="https://placehold.co/500x600/png" class="card-img-top rounded" alt="Product Image"/>
+                        }
+
+                    </div>
+                    <div class="col-12 col-lg-6 offset-lg-1">
+
+                        <div class="col-12 col-md-6 pb-4">
+                            <span class="badge">@Model.Product.Categorey.name</span>
+                        </div>
+                        <div class="row ps-2">
+                            <h6 class="text-dark text-opacity-50  pb-2">
+                                Price:
+                                <span class="product-price"> @newPrice </span>
+                                <span class="text-decoration-line-through">
+                                    @StaticData.getPriceWithCurrency(Model.Product.price)
+                                </span>
+                            </h6>
+                        </div>
+                        <div class="row text-center ps-2">
+                            <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
+                                @* <div class="text-dark text-opacity-50 fw-semibold">Quantity</div> *@
+                            </div>
+                            <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
+
+                            </div>
+                            <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
+
+                            </div>
+                            <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
+
+                            </div>
+                        </div>
+                        <div class="row text-center ps-2">
+                            <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
+                                <div>Total Price:</div>
+                            </div>
+                            <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
+
+                            </div>
+                            <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
+
+                            </div>
+                            <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
+                                <div class="total-price">@newPrice  </div>
+                            </div>
+                        </div>
+                        <div class="row pl-2 my-3">
+                            <p class="text-secondary lh-sm">@Html.Raw(Model.Product.Description)</p>
+                        </div>
+                        <div class="row pl-2 mb-3">
+                            <div class="col-md-4">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text bg-primary text-white border-0 fw-semi-bold"
+                                          id="inputGroup-sizing-default">
+                                        Quantity
+                                    </span>
+                                    <input asp-for="Quantity" asp-type="number" min="1" value="1" class="quantity-input form-control text-end"
+                                           aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                                    <span asp-validation-for="Quantity" style="color: red"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6 pb-1">
+                                <button type="submit"
+                                        class="btn btn-primary bg-gradient  w-100 py-2 text-uppercase fw-semibold">
+                                    Add to Cart @*  (Comming Soon...) *@
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="container">
+    <div id="comments-container" class="mb-4">
+        <!-- Comments will be loaded here -->
+    </div>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form id="add-comment-form" class="mt-4">
+           
+            <div class="form-group">
+                <textarea id="new-comment" class="form-control" rows="3" 
+                    placeholder="Add your comment..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Add Comment</button>
+        </form>
+    }
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+   
+    
+    <script>
+            $(document).ready(function () {
+                const productId = @Model.ProductId;
+                const userId = '@Model.AppUserId';
+                
+                function loadComments() {
+                    $.ajax({
+                        url: `/customer/Comments/GetProductComments?productId=${productId}`,
+                        method: 'GET',
+                        success: function(comments) {
+                            if (comments && comments.length > 0) {
+                                const commentsHtml = comments.map(comment => `
+                                    <div class="comment border-bottom p-3" data-comment-id="${comment.id}">
+                                        <p class="comment-text mb-1">${comment.userComment}</p>
+                                        <small class="text-muted">By ${comment.userName} on ${new Date(comment.dateCommentAdded).toLocaleDateString()}</small>
+                                        ${comment.userId === userId ? `
+                                            <div class="mt-2">
+                                                <button class="btn btn-sm btn-primary edit-comment">Edit</button>
+                                                <button class="btn btn-sm btn-danger delete-comment">Delete</button>
+                                            </div>
+                                        ` : ''}
+                                    </div>
+                                `).join('');
+                                
+                                $('#comments-container').html(commentsHtml);
+                            } else {
+                                $('#comments-container').html('<p class="text-muted">No comments yet.</p>');
+                            }
+                        },
+                        error: function(xhr) {
+                            console.error('Error loading comments:', xhr);
+                            $('#comments-container').html(`
+                                <div class="alert alert-danger">
+                                    Error loading comments. Please try again later.
+                                </div>
+                            `);
+                        }
+                    });
+                }
+    
+                $('#add-comment-form').on('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const commentData = {
+                        productId: productId,
+                        userComment: $('#new-comment').val().trim(),
+                        userId: userId
+                    };
+    
+                    if (!commentData.userComment) {
+                        alert('Please enter a comment.');
+                        return;
+                    }
+    
+                    $.ajax({
+                        url: '/customer/Comments/AddComment',
+                        method: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(commentData),
+                        success: function(response) {
+                            $('#new-comment').val('');
+                            loadComments();
+                        },
+                        error: function(xhr) {
+                            console.error('Error adding comment:', xhr);
+                            alert('Error adding comment. Please try again.');
+                        }
+                    });
+                });
+    
+                $(document).on('click', '.edit-comment', function() {
+                    const commentDiv = $(this).closest('.comment');
+                    const commentId = commentDiv.data('comment-id');
+                    const currentText = commentDiv.find('.comment-text').text().trim();
+                    
+                    const newText = prompt('Edit your comment:', currentText);
+                    
+                    if (newText && newText !== currentText) {
+                        $.ajax({
+                            url: `/customer/Comments/UpdateComment/${commentId}`, // Ensure this is the correct URL
+                            method: 'PUT',
+                            contentType: 'application/json',
+                            data: JSON.stringify(newText),  // Send new comment as a string
+                            success: function() {
+                                loadComments(); // Reload comments after update
+                            },
+                            error: function(xhr) {
+                                console.error('Error updating comment:', xhr);
+                                alert('Error updating comment. Please try again.');
+                            }
+                        });
+                    }
+                });
+
+                $(document).on('click', '.delete-comment', function() {
+                    if (!confirm('Are you sure you want to delete this comment?')) {
+                        return;
+                    }
+                    
+                    const commentId = $(this).closest('.comment').data('comment-id');
+                    
+                    $.ajax({
+                        url: `/customer/Comments/DeleteComment/${commentId}`, // Correct URL for delete
+                        method: 'DELETE',
+                        success: function() {
+                            loadComments(); // Reload comments after deletion
+                        },
+                        error: function(xhr) {
+                            console.error('Error deleting comment:', xhr);
+                            alert('Error deleting comment. Please try again.');
+                        }
+                    });
+                });
+
+    
+                // Load comments when page loads
+                loadComments();
+    
+                // Add anti-forgery token to all AJAX requests
+                // $.ajaxSetup({
+                //     headers: {
+                //         'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                //     }
+                // });
+            });
+        </script>
+    
+    <script>
+    // Get the quantity input element
+    const quantityInput = document.querySelector('.quantity-input');
+    
+    // Get the elements where the price and total price should be displayed
+    const priceElement = document.querySelector('.product-price');
+    const totalPriceElement = document.querySelector('.total-price');
+    
+    // Initial price and quantity values
+    let price = parseFloat(priceElement.textContent.replace(/[^0-9.-]+/g, ""));
+    let quantity = parseInt(quantityInput.value);
+    
+    // Function to calculate and display the total price
+    function calculateTotalPrice() {
+      const totalPrice = price * quantity;
+      totalPriceElement.textContent = totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    }
+    
+    // Add event listener to the quantity input
+    quantityInput.addEventListener('input', () => {
+      quantity = parseInt(quantityInput.value);
+      calculateTotalPrice();
+    });
+    
+    // Call the calculateTotalPrice function once to initialize the total price display
+    calculateTotalPrice();
+       
+    </script>
+    
+
+
+
+}

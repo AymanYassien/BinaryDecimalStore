@@ -1,0 +1,22 @@
+@using System.Collections.Specialized
+@model int
+
+<title>Order Confirmation</title>
+<div class="container row pt-4">
+    <div class="col-12 text-center">
+        <h1 class="text-primary text-center">Order Placed Successfully!</h1>
+        Your Order Number is : @Model <br/><br/>
+        <img src="~/images/nature.jpeg" width="40%" height="40%"  alt="Image" />
+        <div class="col-12 text-center" style=" margin-top: 30px; color:maroon">
+                <br/>
+                Your order has been placed successfully! <br/>
+            </div>
+    </div>
+    
+    
+
+</div>
+
+@section Scripts{
+    <script src="https://js.stripe.com/v3/"></script>
+}

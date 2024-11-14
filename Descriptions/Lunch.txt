@@ -1,0 +1,6 @@
+To Lunch this Project: 
+
+1- Download .net, those packages
+2- configure your database
+3- run with username `` password ``
+4- 

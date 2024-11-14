@@ -1,0 +1,91 @@
+@model List<BinaryDecimalStore.Models.Company> 
+
+
+<title>Companies List</title>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Companies List</h2>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card-body p-4">
+      
+        @* <div class="row pb-3"> *@
+        
+            <div class="col-12 text-end" >
+                <a asp-controller="Company" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-square"></i>&nbsp; New Company
+                </a>
+            </div>
+        </div>
+        <table id="DTData" class="table table-bordered table-striped "style="width:99%">
+            <thead >
+            <tr>
+                <th >Name</th>
+                <th >State</th>
+                <th >City</th>
+                <th >Address</th>
+                <th >Phone</th>
+                <th></th>
+            </tr>
+            </thead>
+        </table>
+      
+    @* </div> *@
+      
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+    
+    <script src="~/js/Companies.js"></script>
+}
+
+
+
+
+@* <tbody> *@
+@*             @if (Model != null) *@
+@*             { *@
+@*                 @foreach (var c in Model) *@
+@*                 { *@
+@*                     <tr> *@
+@*                         <td>@c.Name</td> *@
+@*                         <td>@c.Categorey.name</td> *@
+@*                         <td>@c.price</td> *@
+@*                         <td>@((-1 * c.price * (c.discountRatio / 100) + c.price).ToString("F2"))    (@(c.discountRatio)%)</td> *@
+@*                          *@
+@*                         <td> *@
+@*                             <div class="w-75 btn-group" role="group"> *@
+@*                                 <a asp-controller="Product" asp-action="Upsert" asp-route-ID="@c.ID" class="btn btn-primary mx-2"> *@
+@*                                     <i class="bi bi-pencil-square"></i> Edit *@
+@*                                 </a> *@
+@*                                 <a asp-controller="Product" asp-action="DeleteProduct" asp-route-ID="@c.ID" class="btn btn-danger mx-2"> *@
+@*                                     <i class="bi bi-trash-fill "></i> Delete *@
+@*                                 </a> *@
+@*                             </div> *@
+@*                         </td> *@
+@*                     </tr> *@
+@*                 } *@
+@*             } *@
+@*             else *@
+@*             { *@
+@*                 <td>Null</td> *@
+@*                 <td>Null</td> *@
+@*                 <td>Null</td> *@
+@*             } *@
+@*             *@
+@* $1$             </tbody> #1#           // Table if no use DataTable *@
+
+
+
+
+
+
+
+

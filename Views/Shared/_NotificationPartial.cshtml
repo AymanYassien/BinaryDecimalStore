@@ -1,0 +1,21 @@
+@if ( ViewBag.ErrorMessage != null)
+{
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript" >
+    
+     $(document).ready(function() {
+                toastr.error('@Html.Raw(ViewBag.ErrorMessage)');
+            });
+    
+    </script>
+    
+    
+}
+@if (TempData["success"] != null)
+{
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript" >toastr.success('@TempData["success"]');</script>
+    
+}

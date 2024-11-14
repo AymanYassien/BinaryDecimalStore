@@ -1,0 +1,23 @@
+Back end:
+
+- you need to add model contain SC_Id, FK_Product, FK_UserId, Quantity
+- add in dbSet, IRepo, Repo, IUnit, unit
+- Edit Controller (get / post) in Details, View
+
+- in Post Method, check if product added from same user just update quantity,
+                    no .. add new record
+_________
+Notice here: in EF Core, if you get an ibj and modify its data,
+ by default EF Core keep tracking this obj, so any call for saveChanges its
+  will update in database, rather than call update method or no 
+  
+  can controller that in get() method in Repo by set bool tracked as false
+  and call dbSet.AsNoTracking();
+________________ 
+  Readonly => assigned where Declaration & Constructor, 
+  can not access after constructor execution
+  
+  observer const, only when declare must access 
+  
+  DateTime.Now Invalid in const => not a compile time 
+ 
